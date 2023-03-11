@@ -37,7 +37,7 @@ public class BookTests {
         Book book = new Book();
         book.setTitle("The Lord of the Rings");
         book.setAuthor("J.R.R. Tolkien");
-        book.setGenre("Fantasia");
+        book.setGenre(GenrEnum.FANTASY);
         book.setPageCount(100);
 
         bookController.createBook(book);
@@ -45,7 +45,7 @@ public class BookTests {
         Book savedBook = bookService.getBookById(book.getId());
         assertEquals("The Lord of the Rings", savedBook.getTitle());
         assertEquals("J.R.R. Tolkien", savedBook.getAuthor());
-        assertEquals("Fantasia", savedBook.getGenre());
+        assertEquals(GenrEnum.FANTASY, savedBook.getGenre());
         assertEquals("100", String.valueOf(savedBook.getPageCount()));
         
     }
@@ -56,13 +56,13 @@ public class BookTests {
         Book book1 = new Book();
         book1.setTitle("Harry Potter and the Philosopher's Stone");
         book1.setAuthor("J.K. Rowling");
-        book1.setGenre("Fantasia");
+        book1.setGenre(GenrEnum.FANTASY);
         book1.setPageCount(124);
 
         Book book2 = new Book();
         book2.setTitle("To Kill a Mockingbird");
         book2.setAuthor("Harper Lee");
-        book2.setGenre("Classico");
+        book2.setGenre(GenrEnum.ROMANCE);
         book2.setPageCount(345);
         
         bookController.createBook(book1);

@@ -26,13 +26,13 @@ public class Book {
     private Integer pageCount;
 
     @Column(nullable = false)
-    private String genre;
+    private GenrEnum genre;
 
     
     public Book() {
     }
 
-    public Book(String title, String author, Integer pageCount, String genre) {
+    public Book(String title, String author, Integer pageCount, GenrEnum genre) {
         this.title = title;
         this.author = author;
         this.pageCount = pageCount;
@@ -72,12 +72,12 @@ public class Book {
 		this.pageCount = pageCount;
 	}
 
-	public String getGenre() {
+	public GenrEnum getGenre() {
 		return genre;
 	}
 
-	public void setGenre(String genre) {
-		this.genre = genre;
+	public void setGenre(GenrEnum fantasy) {
+		this.genre = fantasy;
 	}
 	
 	
