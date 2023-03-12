@@ -11,7 +11,7 @@ import com.capgemini.repositories.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
-@Transactional
+
 @Service
 public class UserService {
     private final UserRepository userRepository;

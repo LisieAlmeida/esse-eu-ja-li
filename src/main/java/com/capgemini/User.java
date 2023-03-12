@@ -32,10 +32,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-   /* @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Reading> readings = new ArrayList<>();
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    /*@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Ranking ranking;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -71,6 +71,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public List<Reading> getReadings() {
+		return readings;
+	}
+
+	public void setReadings(List<Reading> readings) {
+		this.readings = readings;
 	}
 
 	/*public List<Reading> getReadings() {
@@ -121,6 +129,8 @@ public class User {
 		User other = (User) obj;
 		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && Objects.equals(name, other.name);
 	}
+
+	
 
     // Construtores, getters e setters
 }

@@ -10,6 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.capgemini.repositories.UserRepository;
 import com.capgemini.service.UserService;
 
+import jakarta.transaction.Transactional;
+
+@Transactional
 @SpringBootTest
 class EsseEuJaLiApplicationTests {
 

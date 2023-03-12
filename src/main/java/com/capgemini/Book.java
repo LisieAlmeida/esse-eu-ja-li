@@ -1,10 +1,14 @@
 package com.capgemini;
 
+import java.util.List;
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,9 +31,14 @@ public class Book {
 
     @Column(nullable = false)
     private GenrEnum genre;
+    
+    @OneToMany(mappedBy = "book")
+    private List<Reading> readings;
 
     
-    public Book() {
+    
+
+	public Book() {
     }
 
     public Book(String title, String author, Integer pageCount, GenrEnum genre) {
@@ -72,6 +81,8 @@ public class Book {
 		this.pageCount = pageCount;
 	}
 
+	
+
 	public GenrEnum getGenre() {
 		return genre;
 	}
@@ -80,9 +91,35 @@ public class Book {
 		this.genre = fantasy;
 	}
 	
+	public List<Reading> getReadings() {
+		return readings;
+	}
+
+	public void setReadings(List<Reading> readings) {
+		this.readings = readings;
+	}
 	
 
 	public Integer getPointValue() {
         return (int) Math.ceil(pageCount / 100.0);
     }
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(author, genre, id, pageCount, readings, title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		return Objects.equals(author, other.author) && genre == other.genre && Objects.equals(id, other.id)
+				&& Objects.equals(pageCount, other.pageCount) && Objects.equals(readings, other.readings)
+				&& Objects.equals(title, other.title);
+	}
 }

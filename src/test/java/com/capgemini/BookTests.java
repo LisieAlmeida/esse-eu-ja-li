@@ -12,10 +12,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
 import com.capgemini.controllers.BookController;
+import com.capgemini.controllers.UserController;
 import com.capgemini.repositories.BookRepository;
 import com.capgemini.service.BookService;
 import com.capgemini.service.UserService;
 
+import jakarta.transaction.Transactional;
+
+@Transactional
 @SpringBootTest
 public class BookTests {
 	@Test
@@ -31,6 +35,8 @@ public class BookTests {
     
     @Autowired
     private BookService bookService;
+    
+  
 
     @Test
     public void testCreateBook() {

@@ -11,7 +11,7 @@ import com.capgemini.repositories.BookRepository;
 
 import jakarta.transaction.Transactional;
 
-@Transactional
+
 @Service
 public class BookService {
 
