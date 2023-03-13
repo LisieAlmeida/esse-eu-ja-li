@@ -3,6 +3,7 @@ package com.capgemini;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class Reading {
 
     
 
-	@ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
     

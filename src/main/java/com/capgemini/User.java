@@ -1,135 +1,178 @@
 package com.capgemini;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.JoinColumn;
 
 @Entity
-@NoArgsConstructor
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false)
-    private String name;
+	@Column(nullable = false)
+	private String name;
 
-    @Column(nullable = false)
-    private String email;
+	@Column(nullable = false)
+	private String email;
 
-    @Column(nullable = false)
-    private String password;
+	@Column(nullable = false)
+	private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Reading> readings = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_book",
+	    joinColumns = @JoinColumn(name = "user_id"),
+	    inverseJoinColumns = @JoinColumn(name = "book_id"))
+	private Set<Book> books = new HashSet<>();
 
-    /*@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Ranking ranking;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Reading> readings = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<RankingGenre> rankingGenres = new ArrayList<>();*/
+	@ElementCollection
+	private Set<String> trophies = new HashSet<>();
+
+	@Column(nullable = false)
+	private int points;
+
+	/*@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Ranking> rankings = new HashSet<>();*/
+
+	public User() {}
+
+	public User(String name, String email, String password) {
+	    this.name = name;
+	    this.email = email;
+	    this.password = password;
+	}
 
 	public Long getId() {
-		return id;
+	    return id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+	    this.id = id;
 	}
 
 	public String getName() {
-		return name;
+	    return name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+	    this.name = name;
 	}
 
 	public String getEmail() {
-		return email;
+	    return email;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+	    this.email = email;
 	}
 
 	public String getPassword() {
-		return password;
+	    return password;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+	    this.password = password;
+	}
+
+	public Set<Book> getBooks() {
+	    return books;
+	}
+
+	public void setBooks(Set<Book> books) {
+	    this.books = books;
+	}
+
+	public Set<Reading> getReadings() {
+	    return readings;
+	}
+
+	public void setReadings(Set<Reading> readings) {
+	    this.readings = readings;
+	}
+
+	public Set<String> getTrophies() {
+	    return trophies;
+	}
+
+	public void setTrophies(Set<String> trophies) {
+	    this.trophies = trophies;
+	}
+
+	public int getPoints() {
+	    return points;
+	}
+
+	public void setPoints(int points) {
+	    this.points = points;
+	}
+
+	/*public Set<Ranking> getRankings() {
+	    return rankings;
+	}
+
+	public void setRankings(Set<Ranking> rankings) {
+	    this.rankings = rankings;
+	}*/
+
+	public void addBook(Book book) {
+	    books.add(book);
+	}
+
+	public void removeBook(Book book) {
+	    books.remove(book);
+	}
+
+	public void addReading(Reading reading) {
+	    readings.add(reading);
+	}
+
+	public void removeReading(Reading reading) {
+	    readings.remove(reading);
+	}
+
+	public void addTrophy(String trophy) {
+	    trophies.add(trophy);
+	}
+
+	public void removeTrophy(String trophy) {
+	    trophies.remove(trophy);
 	}
 	
-	public List<Reading> getReadings() {
-		return readings;
+	public boolean hasTrophy(String trophyName) {
+	    return trophies.contains(trophyName);
 	}
 
-	public void setReadings(List<Reading> readings) {
-		this.readings = readings;
+	public void addPoints(int points) {
+	    this.points += points;
 	}
 
-	/*public List<Reading> getReadings() {
-		return readings;
+	public void removePoints(int points) {
+	    this.points -= points;
 	}
 
-	public void setReadings(List<Reading> readings) {
-		this.readings = readings;
+	/*public void addRanking(Ranking ranking) {
+	    rankings.add(ranking);
 	}
 
-	public Ranking getRanking() {
-		return ranking;
-	}
-
-	public void setRanking(Ranking ranking) {
-		this.ranking = ranking;
-	}
-
-	public List<RankingGenre> getRankingGenres() {
-		return rankingGenres;
-	}
-
-	public void setRankingGenres(List<RankingGenre> rankingGenres) {
-		this.rankingGenres = rankingGenres;
-	}
-*/
-	@Override
-	public int hashCode() {
-		return Objects.hash(email, id, name);
-	}
-
-	public User(String name, String email, String password) {
-		super();
-		
-		this.name = name;
-		this.email = email;
-		this.password = password;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && Objects.equals(name, other.name);
-	}
-
+	public void removeRanking(Ranking ranking) {
+	    rankings.remove(ranking);
+	}*/
 	
 
     // Construtores, getters e setters
