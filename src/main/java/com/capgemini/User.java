@@ -31,6 +31,7 @@ public class User {
 
 	@Column(nullable = false)
 	private String password;
+	
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_book",
@@ -46,9 +47,19 @@ public class User {
 
 	@Column(nullable = false)
 	private int points;
+	
+	@Column(nullable = false)
+	private int rankingPosition;
+	
+	
+
+	
+	
 
 	/*@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Ranking> rankings = new HashSet<>();*/
+
+	
 
 	public User() {}
 
@@ -120,6 +131,14 @@ public class User {
 
 	public void setPoints(int points) {
 	    this.points = points;
+	}
+	
+	public int getRankingPosition() {
+		return rankingPosition;
+	}
+
+	public void setRankingPosition(int rankingPosition) {
+		this.rankingPosition = rankingPosition;
 	}
 
 	/*public Set<Ranking> getRankings() {
