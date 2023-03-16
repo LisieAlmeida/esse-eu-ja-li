@@ -5,7 +5,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,13 +17,17 @@ import com.capgemini.controllers.GenreController;
 import com.capgemini.repositories.GenreRepository;
 import com.capgemini.service.GenreService;
 
+import jakarta.transaction.Transactional;
+
 @SpringBootTest
+@Transactional
 class GenreTest {
 	
 	@Test
 	void contextLoads() {
 		
 	}
+	
 
     @Autowired
     private GenreRepository genreRepository;
