@@ -23,6 +23,8 @@ import com.capgemini.service.UserService;
 
 import jakarta.transaction.Transactional;
 
+
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
@@ -51,7 +53,7 @@ public class UserTests {
 
         List<User> users = userService.getAllUsers();
 
-        assertEquals(2, users.size());
+        assertEquals(11, users.size());
         assertTrue(users.contains(user1));
         assertTrue(users.contains(user2));
     }

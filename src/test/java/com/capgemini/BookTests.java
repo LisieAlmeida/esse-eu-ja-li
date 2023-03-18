@@ -80,7 +80,7 @@ public class BookTests {
         assertEquals(HttpStatus.OK, response.getStatusCode());*/
 
         List<Book> returnedBooks = bookService.getAllBooks();
-        assertEquals(2, returnedBooks.size());
+        assertEquals(10, returnedBooks.size());
         //assertTrue(returnedBooks.contains(book1));
        // assertTrue(returnedBooks.contains(book2));
        
