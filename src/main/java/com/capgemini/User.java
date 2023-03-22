@@ -1,5 +1,6 @@
 package com.capgemini;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +18,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.JoinColumn;
 
 @Entity
-public class User {
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -20,7 +20,7 @@ import com.capgemini.service.BookService;
 
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/book")
 @CrossOrigin(origins = "http://localhost:3000")
 public class BookController {
     

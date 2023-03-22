@@ -33,7 +33,7 @@ public class LoadData  {
 		 Book book1 = new Book();
 	        book1.setTitle("Harry Potter and the Philosopher's Stone");
 	        book1.setAuthor("J.K. Rowling");
-	        book1.setGenre(GenrEnum.FANTASY);
+	        book1.setGenre(GenrEnum.FANTASIA);
 	        book1.setPageCount(124);
 
 	        Book book2 = new Book();

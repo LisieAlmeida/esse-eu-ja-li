@@ -39,7 +39,7 @@ public class ReadingTests {
     	 user = new User("John Doe", "john.doe@example.com", "password");
          user = userService.createUser(user);
 
-         book = new Book("Test Book", "Test Author", 100, GenrEnum.COMEDY);
+         book = new Book("Test Book", "Test Author", 100, GenrEnum.COMÉDIA);
          book = bookService.createBook(book);
     	
         Reading reading = new Reading(user, book);
